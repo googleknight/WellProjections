@@ -1,123 +1,16 @@
-﻿Build started 22-Jun-16 06:04:32 PM.
-     1>Project "I:\Desktop\ONGC\WellProjections\WellProjections\WellProjections.vcxproj" on node 2 (Build target(s)).
+﻿Build started 02-Jul-16 07:12:45 AM.
+     1>Project "G:\GitHub\WellProjections\WellProjections\WellProjections.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         F:\Microsoft Visual Studio\VC\bin\CL.exe /c /Ic:\CoinDir /IC:\CoinDir\bin /IC:\CoinDir\Include\Inventor /IC:\CoinDir\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D COIN_DLL /D SOWIN_DLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ProjectionBox.cpp
-         ProjectionBox.cpp
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(73): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(75): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(81): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(85): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(87): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(95): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(97): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(97): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(105): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(115): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(115): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(119): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(121): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(128): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(129): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(130): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(130): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(134): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(135): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(136): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(136): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(143): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(144): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(145): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(145): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(149): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(150): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(151): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(151): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(155): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(156): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(157): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(157): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(75): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(81): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(87): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(97): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(105): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(115): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(121): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(130): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(136): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(145): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(151): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(157): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _itoa. See online help for details.
-         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\stdlib.h(1316): note: see declaration of 'itoa'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(177): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(179): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(181): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(183): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(184): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(185): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(186): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(187): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(188): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(189): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(190): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(191): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(199): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(200): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(201): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(202): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(203): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(204): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(205): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(206): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(207): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(208): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(209): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(210): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(212): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(213): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(214): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(217): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(218): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(219): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(220): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(221): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(222): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(223): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(224): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(225): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(248): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(250): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(251): warning C4305: 'argument': truncation from 'double' to 'float'
-     1>i:\desktop\ongc\wellprojections\wellprojections\projectionbox.cpp(253): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+         F:\Microsoft Visual Studio\VC\bin\CL.exe /c /Ic:\CoinDir /IC:\CoinDir\bin /IC:\CoinDir\Include\Inventor /IC:\CoinDir\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D COIN_DLL /D SOWIN_DLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         Main.cpp
+     1>g:\github\wellprojections\wellprojections\projections.h(59): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
        Link:
-         F:\Microsoft Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"I:\Desktop\ONGC\WellProjections\Debug\WellProjections.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\CoinDir\lib /LIBPATH:C:\CoinDir\bin /LIBPATH:C:\CoinDir\bin /LIBPATH:C:\CoinDir\lib coin3d.lib sowin1d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"I:\Desktop\ONGC\WellProjections\Debug\WellProjections.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"I:\Desktop\ONGC\WellProjections\Debug\WellProjections.lib" /MACHINE:X86 Debug\ProjectionBox.obj
+         F:\Microsoft Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GitHub\WellProjections\Debug\WellProjections.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\CoinDir\lib /LIBPATH:C:\CoinDir\bin /LIBPATH:C:\CoinDir\bin /LIBPATH:C:\CoinDir\lib coin3d.lib sowin1d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"G:\GitHub\WellProjections\Debug\WellProjections.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GitHub\WellProjections\Debug\WellProjections.lib" /MACHINE:X86 Debug\Main.obj
+         Debug\ProjectionBox.obj
          Debug\Well.obj
-         WellProjections.vcxproj -> I:\Desktop\ONGC\WellProjections\Debug\WellProjections.exe
-     1>Done Building Project "I:\Desktop\ONGC\WellProjections\WellProjections\WellProjections.vcxproj" (Build target(s)).
+         WellProjections.vcxproj -> G:\GitHub\WellProjections\Debug\WellProjections.exe
+     1>Done Building Project "G:\GitHub\WellProjections\WellProjections\WellProjections.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.04
+Time Elapsed 00:00:02.87

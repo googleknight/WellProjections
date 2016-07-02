@@ -1,0 +1,13 @@
+﻿Build started 23-Jun-16 07:49:54 PM.
+     1>Project "G:\GitHub\WellProjections\WellProjections\WellProjections.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         F:\Microsoft Visual Studio\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ProjectionBox.cpp Well.cpp
+         ProjectionBox.cpp
+     1>F:\Microsoft Visual Studio\VC\include\Inventor/SbBasic.h(36): fatal error C1083: Cannot open include file: 'Inventor/C/basic.h': No such file or directory
+         Well.cpp
+     1>Well.cpp(3): fatal error C1083: Cannot open include file: 'Inventor/Win/SoWin.h': No such file or directory
+     1>Done Building Project "G:\GitHub\WellProjections\WellProjections\WellProjections.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:02.35

@@ -1,78 +1,48 @@
-#define _SCL_SECURE_NO_WARNINGS
+#include<iostream>
 #include<windows.h>
+#include<string>
 #include <Inventor/Win/SoWin.h>
 #include <Inventor/Win/viewers/SoWinExaminerViewer.h>
 #include <Inventor/nodes/SoSeparator.h>
-#include <Inventor/nodes/SoCone.h>
 #include <Inventor/nodes/SoDrawStyle.h>
-#include <Inventor/nodes/SoComplexity.h>
-#include <Inventor/nodes/SoNurbsCurve.h>
-#include <Inventor/nodes/SoCoordinate3.h>
-
-#include <Inventor/nodes/SoCube.h>
-#include <Inventor/nodes/SoDrawStyle.h>
-#include <Inventor/nodes/SoLightModel.h>
 #include <Inventor/nodes/SoMaterial.h>
 #include <Inventor/nodes/SoMaterialBinding.h>
 #include <Inventor/nodes/SoSeparator.h>
 #include <Inventor/nodes/SoShapeHints.h>
 #include <Inventor/nodes/SoTranslation.h>
 #include <Inventor/VRMLnodes/SoVRMLExtrusion.h>
-
 #include <Inventor/nodes/SoText2.h>
 #include <Inventor/nodes/SoLineSet.h>
-#include <Inventor/nodes/SoCylinder.h>
 #include <Inventor/nodes/SoPointSet.h>
+#include <Inventor/Win/events/SoEvent.h>
+#include <Inventor/Win/events/SoEvents.h>
 
-#include <Inventor/nodes/SoSeparator.h>
-#include <math.h> // for M_PI
-
-
-float bigx = 0, bigy = 0, bigz = 0;
-SoSeparator* drawLines(SbVec3f *verLine, int totalpoints, SbColor color, char *txt, float width, SbVec3f verLabel);
-		void drawSteps2(int scale, int step, int size, int labelflag, SoSeparator* root, SbColor colorbig, int x1, int y1, int z1, int x2, int y2, int z2);
-		SoSeparator * getBox(int xmax, int ymax, int zmax, int min, int STEP);
-		SoSeparator* getOilSymbol(SbVec3f point, int size);
-		SoSeparator * getWellSymbol(SbVec3f point, int size);
-
-class WellBore {
-
-public:
-	WellBore() : nPoints(0), points(NULL), dataMin(0),
-		dataMax(1), data0(NULL), data1(NULL) {}
-
-	~WellBore()
-	{
-		delete points;
-		delete data0;
-		delete data1;
-	}
-
-	int nPoints;      // Number of data points
-	SbVec3f *points;  // 3D coordinate of each data point
-	float    dataMin; // Smallest data value
-	float    dataMax; // Largest data value
-	float   *data0;   // First set of data values
-	float   *data1;   // (Optional) Second set of data values
-};
-
-WellBore *
-readWellBore(const char *filename)
+#include <math.h>// for M_PI
+#include"Projections.h"
+float Well::getbigx()
 {
-	WellBore *pWell = new WellBore;
-
+	return bigx;
+}
+float Well::getbigy()
+{
+	return bigy;
+}
+float Well::getbigz()
+{
+	return bigz;
+}
+Well::Well(const char *filename)
+{
+	//Well *pWell = new Well;
 	FILE *fp = fopen(filename, "r");
 	if (fp == NULL) {
 		fprintf(stderr, "*** Unable to open data file '%s'.\n", filename);
-		return NULL;
+		
 	}
-
 	int nPoints = 0;
-
 	const int BUFLEN = 256;
 	char buffer[BUFLEN];
 	char *p;
-
 	while ((p = fgets(buffer, BUFLEN, fp))) {
 		while (*p == ' ') p++; // skip whitespace
 		if (*p == '#' || *p == '\0' || *p == '\n') // Comment or end-of-line
@@ -82,49 +52,33 @@ readWellBore(const char *filename)
 			sscanf(p, "%d", &nPoints);
 		}
 		else if (!strncmp(p, "Coords", 6)) {
-			pWell->nPoints = nPoints;
-			pWell->points = new SbVec3f[nPoints];
+			this->nPoints = nPoints;
+			points = new SbVec3f[nPoints];
 			for (int i = 0; i < nPoints; ++i) {
 				float x, y, z;
 				p = fgets(buffer, BUFLEN, fp);
 				sscanf(p, "%g %g %g", &x, &y, &z);
-				pWell->points[i].setValue(x, y, z);
+				points[i].setValue(x, y, z);
 				if (x > bigx)bigx = x;
 				if (y > bigy)bigy = y;
 				if (z > bigz)bigz = z;
 			}
 		}
-		else if (!strncmp(p, "Data", 4)) {
-			pWell->data0 = new float[nPoints];
-			for (int i = 0; i < nPoints; ++i) {
-				float val;
-				p = fgets(buffer, BUFLEN, fp);
-				sscanf(p, "%g", &val);
-				pWell->data0[i] = val;
-			}
 		}
-	}
-
-	// We happen to know the range for the data in this example
-	pWell->dataMin = 0;
-	pWell->dataMax = 255;
-
+	
 	fclose(fp);
-	printf("--- Loaded data file '%s': %d points.\n",
-		filename, nPoints);
-
-	return pWell;
+	
 }
 
 
-int getPoints(WellBore *pWell, SbVec3f to)
+int Well:: getPoints( SbVec3f to)
 {
 	int index;
-	for (int i = 0; i < pWell->nPoints; i++)
+	for (int i = 0; i < nPoints; i++)
 	{
 		float x1, y1, z1;
 		float x2, y2, z2;
-		pWell->points[i].getValue(x1, y1, z1);
+		points[i].getValue(x1, y1, z1);
 		to.getValue(x2, y2, z2);
 		if (x1 == x2 && y1 == y2 && z1 == z2)
 			return i;
@@ -134,15 +88,15 @@ int getPoints(WellBore *pWell, SbVec3f to)
 }
 
 
-SoSeparator *
-makeExtrusion(WellBore *pWell, SbVec3f to, float scaleFactor, SbColor color)
+SoSeparator * Well::
+makeExtrusion( SbVec3f to, float scaleFactor)
 {
 	// Group the attribute nodes and extrusion
 	SoSeparator *pSep = new SoSeparator;
-	int   numSides = 12;
-	int nPoints = getPoints(pWell, to);
-	SbVec3f *points = new SbVec3f[nPoints];
-	memcpy(points, pWell->points, nPoints*sizeof(pWell->points[0]));
+	int   numSides;
+	int noPoints = getPoints(to);
+	SbVec3f *temppoints = new SbVec3f[noPoints];
+	memcpy(temppoints, points, noPoints*sizeof(points[0]));
 	// Extrusion will be considered "solid" to enable back-face culling.
 	// Also set crease angle to "smooth" surface for more than 4 sides.
 	SoShapeHints *pHints = new SoShapeHints;
@@ -153,7 +107,7 @@ makeExtrusion(WellBore *pWell, SbVec3f to, float scaleFactor, SbColor color)
 	SoVRMLExtrusion *pExt = new SoVRMLExtrusion;
 	//SoExtrusion *pExt = new SoExtrusion;
 	// Compute x and z coordinates around circle
-	numSides = 1000;
+	numSides = 500;
 	int   side;
 	float theta = 0.0f;
 	float dTheta = (float)(2.0 * M_PI / (double)numSides);
@@ -173,69 +127,93 @@ makeExtrusion(WellBore *pWell, SbVec3f to, float scaleFactor, SbColor color)
 	bronze->specularColor.setValue(.99, .94, .81);
 	bronze->shininess = .28;
 	pSep->addChild(bronze);
-	pExt->crossSection.set1Value(numSides, SbVec2f(0, 0.5f)); // close loop
-															  // Coordinates of well bore define the spine
-
-	pExt->spine.setValues(0, nPoints, points);
-	// Get data range
-
-
-	pExt->scale.setValue(SbVec2f(scaleFactor, scaleFactor));
+	pExt->crossSection.set1Value(numSides, SbVec2f(0, 0.5f)); 
+	pExt->spine.setValues(0, noPoints, temppoints);
+	pExt->scale.setNum(nPoints);
+	pExt->scale.set1Value(0, SbVec2f(scaleFactor+10, scaleFactor+10));
+	for (int i = 1; i <nPoints-2; ++i) 
+	{
+		pExt->scale.set1Value(i, SbVec2f(scaleFactor, scaleFactor));
+	}
+	pExt->scale.set1Value(nPoints - 2, SbVec2f(scaleFactor + 4, scaleFactor + 4));
 	pSep->addChild(pExt);
 	return pSep;
 }
-
-
-
-/////////////////////////////////////////////////////////////
-
-int
-main(int, char ** argv)
+using namespace std;
+SoSeparator* Well:: drawWell()
 {
-
-	HWND window = SoWin::init(argv[0]);
-	if (window == NULL) exit(1);
-
-	SoWinExaminerViewer * viewer = new SoWinExaminerViewer(window);
-
-	
 	SoSeparator * root = new SoSeparator;
-	root->ref();
-
-	// Try to read the files
-	char *DataDir0 = "data0.txt";
-	char *DataDir1 = "data1.txt";
-	WellBore *pWell0 = readWellBore(DataDir0);
-	WellBore *pWell1 = readWellBore(DataDir1);
-	if (!pWell0 || !pWell1) {
-		fprintf(stderr, "Exiting -- unable to load data or colormap\n");
-		return 0;
+	int totalcasing;
+	std::cout << "\n\nTotal points read:";
+	std::cout <<nPoints << std::endl;
+	std::cout << "\n\nTotal number of casing:";
+	std::cin >> totalcasing;
+	float bigsize=0;
+	for (int i = 0; i < totalcasing; i++)
+	{
+		float size;
+		int index;
+		std::cout << "Casing " << i + 1 << " Enter size and point number:";
+	//again:
+		std::cin >> size >> index;
+		//if (index >= pWell->nPoints)
+		//	goto again;
+		SoSeparator *temp = makeExtrusion(points[index], size);
+		std::string nm = "casing"+std::to_string(i+1);
+		temp->setName(SbName(nm.c_str()));
+		root->addChild(temp);
+		if (size > bigsize)bigsize = size;
 	}
-
-	// Simulate having a second data set on the second bore
-	pWell1->data1 = new float[pWell1->nPoints];
-	memcpy(pWell1->data1, pWell1->data0, pWell1->nPoints * sizeof(float));
-
-	// First bore only has one data set, so default bore will have
-	// diameter of 1.  Scale it by 8 to be more visible.
-	
-	root->addChild(getOilSymbol(pWell1->points[0], 30));
-	root->addChild(makeExtrusion(pWell1, pWell1->points[49], 12, SbColor(1, 0, 0)));
-	root->addChild(makeExtrusion(pWell1, pWell1->points[30], 20, SbColor(0, 1, 0)));
-	root->addChild(makeExtrusion(pWell1, pWell1->points[10], 25, SbColor(0, 1, 1)));
-	root->addChild(getWellSymbol(pWell0->points[0], 30));
-	root->addChild(makeExtrusion(pWell0, pWell0->points[30], 30, SbColor(1, 1, 0)));
-	root->addChild(getBox(bigx + 20, bigy + 20, bigz + 20, 0, 10));
-
-	viewer->setSceneGraph(root);
-	viewer->show();
-
-	SoWin::show(window);
-	SoWin::mainLoop();
-	delete viewer;
-	root->unref();
-	return 0;
+	int welltype;
+	std::cout << "\n\n1.Oil Well\n2.Gas Well";
+	std::cout << "\n Choose option:";
+	std::cin >> welltype;
+	if (welltype == 2)
+		root->addChild(getWellSymbol(points[0], bigsize));
+	/*char name[30];
+	cout << "\nEnter casing number:";
+	cin >> name;
+	SoSeparator *temp;
+	cout << endl << name;
+	temp = (SoSeparator*)SoNode::getByName(SbName(name));
+	root->removeChild(temp);*/
+	return root;
 }
-
-
-
+float Well::depth()
+{
+	float x1,y1,z1,x2, y2,z2;
+	points[0].getValue(x1, y1,z1 );
+	points[nPoints-1].getValue(x2, y2, z2);
+	this->pipedepth=(abs(y2 - y1));
+	return pipedepth;
+}
+float Well::pipeLength()
+{
+	float x1, y1, z1, x2, y2, z2;
+	float realLength = 0;
+	for (int i = 0; i < nPoints-1; i++)
+	{
+		points[i].getValue(x1, y1, z1);
+		points[i+1].getValue(x2, y2, z2);
+		realLength+=sqrt(pow((x1 - x2), 2) + pow(y1 - y2, 2) + pow(z1 - z2, 2));
+	}
+	this->pipelength = realLength;
+	return realLength;
+}
+SoSeparator* Well:: getWellSymbol(SbVec3f point, int size)
+{
+	
+	SoSeparator *node = new SoSeparator;
+	float x, y, z;
+	size += 2;
+	point.getValue(x, y, z);
+	SbVec3f v[2] = { SbVec3f(x - size,y,z - size),SbVec3f(x + size,y,z + size) };
+	node->addChild(drawLines(v, 2, SbColor(1, 1, 1), "", 4, SbVec3f(0, 0, 0)));
+	SbVec3f v1[2] = { SbVec3f(x ,y,z - (size + 7)),SbVec3f(x ,y,z + size + 7) };
+	node->addChild(drawLines(v1, 2, SbColor(1, 1, 1), "", 4, SbVec3f(0, 0, 0)));
+	SbVec3f v2[2] = { SbVec3f(x - size,y,z + size),SbVec3f(x + size,y,z - size) };
+	node->addChild(drawLines(v2, 2, SbColor(1, 1, 1), "", 4, SbVec3f(0, 0, 0)));
+	SbVec3f v3[2] = { SbVec3f(x - (size + 7),y,z),SbVec3f(x + size + 7,y,z) };
+	node->addChild(drawLines(v3, 2, SbColor(1, 1, 1), "", 4, SbVec3f(0, 0, 0)));
+	return node;
+}
