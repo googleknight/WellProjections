@@ -6,8 +6,6 @@
 #include <Inventor/nodes/SoSeparator.h>
 #include <Inventor/nodes/SoDrawStyle.h>
 #include <Inventor/nodes/SoMaterial.h>
-#include <Inventor/nodes/SoMaterialBinding.h>
-#include <Inventor/nodes/SoSeparator.h>
 #include <Inventor/nodes/SoShapeHints.h>
 #include <Inventor/nodes/SoTranslation.h>
 #include <Inventor/VRMLnodes/SoVRMLExtrusion.h>
@@ -31,7 +29,7 @@ float Well::getbigz()
 {
 	return bigz;
 }
-Well::Well(const char *filename)
+Well::Well(const char *filename)//Reads data file and initializes various data members
 {
 	//Well *pWell = new Well;
 	FILE *fp = fopen(filename, "r");
@@ -43,22 +41,26 @@ Well::Well(const char *filename)
 	const int BUFLEN = 256;
 	char buffer[BUFLEN];
 	char *p;
-	while ((p = fgets(buffer, BUFLEN, fp))) {
+	while ((p = fgets(buffer, BUFLEN, fp))) //reading line by line
+	{
 		while (*p == ' ') p++; // skip whitespace
 		if (*p == '#' || *p == '\0' || *p == '\n') // Comment or end-of-line
 			continue;
-		if (!strncmp(p, "nVertices", 9)) {
+		if (!strncmp(p, "nVertices", 9)) // When it reads nVertices
+		{
 			p += 9;
-			sscanf(p, "%d", &nPoints);
+			sscanf(p, "%d", &nPoints);//reading total number of vertices in file
 		}
-		else if (!strncmp(p, "Coords", 6)) {
-			this->nPoints = nPoints;
-			points = new SbVec3f[nPoints];
+		else if (!strncmp(p, "Coords", 6)) //When it reads Coords
+		{
+			this->nPoints = nPoints;// initalizing nPoints
+			points = new SbVec3f[nPoints];//allocating memory
 			for (int i = 0; i < nPoints; ++i) {
 				float x, y, z;
 				p = fgets(buffer, BUFLEN, fp);
-				sscanf(p, "%g %g %g", &x, &y, &z);
-				points[i].setValue(x, y, z);
+				sscanf(p, "%g %g %g", &x, &y, &z);// reading x y z coordinates line by line 
+				points[i].setValue(x, y, z);//storing each vertex in "points"
+				//Finding maximum x,y,z values
 				if (x > bigx)bigx = x;
 				if (y > bigy)bigy = y;
 				if (z > bigz)bigz = z;
@@ -66,12 +68,12 @@ Well::Well(const char *filename)
 		}
 		}
 	
-	fclose(fp);
+	fclose(fp);//file pointer 
 	
 }
 
 
-int Well:: getPoints( SbVec3f to)
+int Well:: getPoints( SbVec3f to)//return index of that point from list of points
 {
 	int index;
 	for (int i = 0; i < nPoints; i++)
@@ -83,7 +85,6 @@ int Well:: getPoints( SbVec3f to)
 		if (x1 == x2 && y1 == y2 && z1 == z2)
 			return i;
 	}
-
 	return 0;
 }
 
@@ -105,8 +106,8 @@ makeExtrusion( SbVec3f to, float scaleFactor)
 	pHints->creaseAngle = (float)(M_PI / 2.1);
 	pSep->addChild(pHints);
 	SoVRMLExtrusion *pExt = new SoVRMLExtrusion;
-	//SoExtrusion *pExt = new SoExtrusion;
-	// Compute x and z coordinates around circle
+	// Cross section (prescaled to diameter=1 to allow meaningful scaling)
+	// 500 sides makes a very smooth cylinder .
 	numSides = 500;
 	int   side;
 	float theta = 0.0f;
@@ -121,6 +122,7 @@ makeExtrusion( SbVec3f to, float scaleFactor)
 		pExt->crossSection.set1Value(side, SbVec2f(x, z));
 		theta += dTheta;
 	}
+	//Bronze colour
 	SoMaterial *bronze = new SoMaterial;
 	bronze->ambientColor.setValue(.33, .22, .27);
 	bronze->diffuseColor.setValue(.78, .57, .11);
@@ -128,9 +130,12 @@ makeExtrusion( SbVec3f to, float scaleFactor)
 	bronze->shininess = .28;
 	pSep->addChild(bronze);
 	pExt->crossSection.set1Value(numSides, SbVec2f(0, 0.5f)); 
+	// Coordinates of well define the spine
 	pExt->spine.setValues(0, noPoints, temppoints);
 	pExt->scale.setNum(nPoints);
+	// To make top side of well little larger than rest
 	pExt->scale.set1Value(0, SbVec2f(scaleFactor+10, scaleFactor+10));
+	//Defining radius for each coordinate values
 	for (int i = 1; i <nPoints-2; ++i) 
 	{
 		pExt->scale.set1Value(i, SbVec2f(scaleFactor, scaleFactor));
@@ -140,7 +145,7 @@ makeExtrusion( SbVec3f to, float scaleFactor)
 	return pSep;
 }
 using namespace std;
-SoSeparator* Well:: drawWell()
+SoSeparator* Well:: drawWell()//Little menu driven function which asks deatils about casing and draws well accordingly
 {
 	SoSeparator * root = new SoSeparator;
 	int totalcasing;
@@ -154,10 +159,10 @@ SoSeparator* Well:: drawWell()
 		float size;
 		int index;
 		std::cout << "Casing " << i + 1 << " Enter size and point number:";
-	//again:
+		again:
 		std::cin >> size >> index;
-		//if (index >= pWell->nPoints)
-		//	goto again;
+		if (index >= nPoints)
+			goto again;
 		SoSeparator *temp = makeExtrusion(points[index], size);
 		std::string nm = "casing"+std::to_string(i+1);
 		temp->setName(SbName(nm.c_str()));
@@ -181,6 +186,7 @@ SoSeparator* Well:: drawWell()
 }
 float Well::depth()
 {
+	//just finding difference between two values of y
 	float x1,y1,z1,x2, y2,z2;
 	points[0].getValue(x1, y1,z1 );
 	points[nPoints-1].getValue(x2, y2, z2);
@@ -189,6 +195,7 @@ float Well::depth()
 }
 float Well::pipeLength()
 {
+	//using distance fromula.
 	float x1, y1, z1, x2, y2, z2;
 	float realLength = 0;
 	for (int i = 0; i < nPoints-1; i++)
@@ -202,7 +209,7 @@ float Well::pipeLength()
 }
 SoSeparator* Well:: getWellSymbol(SbVec3f point, int size)
 {
-	
+	//draws Gas Well Symbol on top of Well
 	SoSeparator *node = new SoSeparator;
 	float x, y, z;
 	size += 2;

@@ -168,6 +168,7 @@ SoSeparator * ProjectionBox::getBox()
 	//root nodes 
 	SoSeparator *root = new SoSeparator;
 	SoTransform *trans = new SoTransform;
+	//shifting the whole box according to well
 	float x, y, z;
 	points[0].getValue(x, y, z);
 	x = 0; z = 0; y = -(YMAX - y);

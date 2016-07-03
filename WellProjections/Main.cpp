@@ -40,7 +40,7 @@ int main(int, char ** argv)
 			cout << "\nAboslute Depth" << pWell->depth();//Calcluating Depth
 			cout << "\nReal length of pipe" << pWell->pipeLength()<<endl;//Calcluating total pipe length
 			temp = pWell->drawWell();// Well is constructed and its node is returned
-			temp->setName(FileName);//Well node is named
+		//	temp->setName(FileName);//Well node is named
 			root->addChild(temp);//Newly constructed well is addded to scenegraph
 			ProjectionBox *box = new ProjectionBox(pWell, 0, 10);// A bounding box inside which all trajectories will be shown
 			root->addChild(box->getBox()); //A bounding box node is added in scenegraph
@@ -77,7 +77,7 @@ int main(int, char ** argv)
 				return 1;
 			root->addChild(fileContents);// applying it to root node.
 		}
-		if (choice == 5)//Save current visulatiztion as .iv file which can be opened in any CAD, CAMD software too.
+		if (choice == 5)//Save current visulatiztion as .iv file which can be opened in any CAD, CAM software too.
 		{
 			cout << "\nEnter file name:";
 			scanf_s("%s", FileName, 50);
@@ -88,19 +88,13 @@ int main(int, char ** argv)
 			myAction.getOutput()->closeFile();
 		}
 	}
-	
-	
-	
-	//root->addChild(getBox(pWell1->bigx + 20, pWell1->bigy , pWell1->bigz + 20, 0, 10));
-	SoWinExaminerViewer *myRenderArea = new SoWinExaminerViewer(window);
-	myRenderArea->setSceneGraph(root);
-	myRenderArea->setTitle("Wells");
-	
+	// Set up viewer:
+	SoWinExaminerViewer *myRenderArea = new SoWinExaminerViewer(window);// It provides a user interface that allows use of the mouse to modify camera placement in the scene.
+	myRenderArea->setSceneGraph(root);// Passing root node to view
+	myRenderArea->setTitle("Wells");// Title of the window
 	myRenderArea->show();
-	SoWin::show(window);
-	SoWin::mainLoop();
-
-	//system("pause>NULL");
+	SoWin::show(window); // Display main window
+	SoWin::mainLoop();// Main Inventor event loop
 	delete myRenderArea;
 	root->unref();
 	return 0;
